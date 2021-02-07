@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--====styling=====-->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!--===Poppins===-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!--======Boxicons======-->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Quiz web app</title>
+</head>
+<body>
+    <section class="hero">
+        <header>
+            <nav class="nav">
+                <ul>
+                    <li><a href="" class="nav__logo">Logo</a></li>
+                </ul>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+
+                        {% if request.user.is_authenticated %}
+                        <li class="nav__item"><a href="{% url 'account_logout' %}" class="nav_link btn">Logout</a></li>
+                        {% else%}
+                        <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
+                        <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <ul class="nav__toogle" id="nav-toggle" >
+                    <i class='bx bxs-grid '></i>
+                </ul>
+
+            </nav>
+
+        </header>
+        <section class="ads">
+            <div class="ad-silver">
+                <div class="img">
+                    <img src="{% static 'img/logo-colour.d534143b.svg' %}" alt="">
+                </div>
+                <div class="description">
+                    <h2 class="data">Coca cola <span class="close"><i class='bx bx-x'></i></span></h2>
+                    <p class="desc">The essential app for every designer. Generate and collect beautiful color palettes on the go.</p>
+                    <a href="">Visit now</a>
+                </div>
+            </div>
+        </section>
+         {% if request.user.is_authenticated %}
+                <section class="hero-body section">
+            <div class="hero__img ">
+                <img src="{% static 'img/Questions.svg' %}" alt="">
+            </div>
+            <div class="hero__data">
+                <h1 class="home__welcome">Next game starts in</h1>
+                <section class="countdown-container">
+                    <table>
+                        <tr class="countdown">
+                            <td id="days"></td>
+                            <td id="hours"></td>
+                            <td id="minutes"></td>
+                            <td id="seconds"></td>
+                        </tr>
+                        <tr class="title">
+                            <td>Days</td>
+                            <td>Hours</td>
+                            <td>Minutes</td>
+                            <td>Seconds</td>
+                        </tr>
+                    </table>
+                </section>
+                <div class="hero__btns">
+                    <button class="button" id="copy-btn" ><i class='bx bxs-share ' ></i>Share</button>
+                    <a href=""  class="button-light">Register</a>
+                </div>
+                <div class="copied-msg-container">
+                    <p id="copied-msg">Copied!</p>
+                </div>
+            </div>
+        </section>
+        {% else %}
+        <section class="hero-body " >
+            <div class="hero__img">
+                <img src="{% static 'img/winners.svg' %}" alt="">
+            </div>
+            <div class="hero__data">
+                <h1 class="hero__title">Welcome</h1>
+                <p class="hero__description">Take quizes and win free money!</p>
+                <div class="hero__btns">
+                    <a href="home2.html" class="button">Get started</a>
+                    <a href="#how_it_works"  class="button-light">Learn more</a>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+
+        {% else %}
+        <section class="how_it_works" id="how_it_works">
+            <h1>How it works</h1>
+            <div class="content_container">
+                <div class="container_body">
+                    <img src="{% static 'img/bxs-user.svg' %}" alt="">
+                    <h4>Step 1</h4>
+                    <h3>Create an account</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis, enim voluptates unde nam repellat veritatis! Similique suscipit nemo dignissimos nam, voluptates aut a amet architecto obcaecati laboriosam culpa doloribus.</p>
+                </div>
+                <div class="container_body">
+                    <img src="{% static 'img/bxs-badge-check.svg' %}" alt="">
+                    <h4>Step 2</h4>
+                    <h3>Sign In</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis, enim voluptates unde nam repellat veritatis! Similique suscipit nemo dignissimos nam, voluptates aut a amet architecto obcaecati laboriosam culpa doloribus.</p>
+                </div>
+                <div class="container_body">
+                    <img src="{% static 'img/bxs-trophy.svg' %}" alt="">
+                    <h4>Step 3</h4>
+                    <h3>Start playing</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis, enim voluptates unde nam repellat veritatis! Similique suscipit nemo dignissimos nam, voluptates aut a amet architecto obcaecati laboriosam culpa doloribus.</p>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!--===== FOOTER =====-->
+    <footer class="footer section" >
+    <div class="footer__container ">
+        <div class="footer__box">
+            <h3 class="footer__title">Logo</h3>
+           <!-- <p class="footer__description">New collection of shoes 2020.</p>-->
+        </div>
+
+        <div class="footer__box">
+            <h3 class="footer__title">Explore</h3>
+           <ul>
+               <li><a href="#home" class="footer__link">Home</a></li>
+               <li><a href="#feautured" class="footer__link">Login</a></li>
+               <li><a href="#women" class="footer__link">Create an account</a></li>
+
+           </ul>
+        </div>
+
+        <div class="footer__box">
+            <h3 class="footer__title">Support</h3>
+           <ul>
+               <li><a href="#" class="footer__link">Product Help</a></li>
+               <li><a href="#" class="footer__link">Customer Care</a></li>
+               <li><a href="#" class="footer__link">Athorized Sevices</a></li>
+           </ul>
+        </div>
+
+        <div class="footer__box">
+            <a href="" class="footer__social"><i class='bx bxl-facebook' ></i></a>
+            <a href="" class="footer__social"><i class='bx bxl-instagram-alt'></i></a>
+            <a href="" class="footer__social"><i class='bx bxl-telegram'></i></a>
+            <a href="" class="footer__social"><i class='bx bxs-envelope' ></i></a>
+        </div>
+
+    </div>
+
+</footer>
+{% endif %}
+</body>
+<script src="{% static 'JS/main.js' %}"></script>
+<script type="text/javascript">
+    function countdown(){
+        var now = new Date();
+        var eventDate = new Date(2021, 2, 1);
+        var currentTime = now.getTime();
+        var eventTime = eventDate.getTime();
+        var remTime = eventTime - currentTime
+        var seconds = Math.floor(remTime/1000);
+        var minutes = Math.floor(seconds / 60)
+        var hour = Math.floor(minutes / 60)
+        var days  = Math.floor(hour / 24)
+         hour %= 24
+         minutes %= 60
+         seconds %= 60
+         if(hour < 10){
+             hour = "0" + hour;
+         }
+         if(minutes < 10){
+            minutes = "0" + minutes;
+        }
+         if(seconds < 10){
+            seconds = "0" + seconds;
+        }
+        document.getElementById("days").innerText = days
+        document.getElementById("hours").innerText = hour ;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+        setTimeout(countdown, 1000)
+
+
+    }
+    countdown()
+</script>
+</html>

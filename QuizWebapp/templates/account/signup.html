@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--====styling=====-->
+  <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
+  <!--===Poppins===-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <!--======Boxicons======-->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <title>Quiz web app</title>
+</head>
+<body>
+  <a href="{% url 'home' %}" class="back"><i class='bx bx-arrow-back'></i></a>
+  <section class="left">
+    <img src="{% static 'img/login.svg' %}" alt="">
+  </section>
+  <section class="right">
+
+    {% load i18n %}
+
+    
+    {% block content %}
+    
+    <h1>{% trans "Sign Up" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="link">sign in</a>.{% endblocktrans %}</p>
+
+    
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      <div class="form__input w-100">
+        {{form.username}}
+      </div>
+      <div class="form__input w-100">
+        {{form.email}}
+      </div>
+      <div class="form__input signup_input_form">
+        {{form.password1}}
+        {{form.password2}}
+      </div>
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <ul class="error">
+        {{ form.password.errors }}
+      </ul>
+      {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="error-signin">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="error-signin">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+      <button type="submit" class="button">{% trans "Sign Up" %}</button>
+    </form>
+    
+    {% endblock %}
+    
+  </section>
+</body>
+</html>
+
